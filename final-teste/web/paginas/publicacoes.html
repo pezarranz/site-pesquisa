@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Publicações - CompEng Research</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "error-container": "#ffdad6",
+                            "secondary-container": "#fad8d3",
+                            "on-tertiary-fixed": "#332221",
+                            "on-secondary": "#ffffff",
+                            "error": "#ba1a1a",
+                            "surface-container-low": "#fff1ed",
+                            "surface-dim": "#e8d6d1",
+                            "primary": "#ff5000",
+                            "on-surface": "#332221",
+                            "on-primary-fixed": "#332221",
+                            "on-error-container": "#410002",
+                            "secondary-fixed-dim": "#e2bdb7",
+                            "surface-container-highest": "#f1ded9",
+                            "on-tertiary": "#ffffff",
+                            "on-surface-variant": "#66322e",
+                            "primary-fixed": "#ffdbcf",
+                            "inverse-on-surface": "#fff8f6",
+                            "surface-tint": "#ff5000",
+                            "surface-container-lowest": "#ffffff",
+                            "on-primary-fixed-variant": "#cc3306",
+                            "inverse-surface": "#332221",
+                            "tertiary-fixed": "#ffdada",
+                            "on-primary-container": "#332221",
+                            "on-secondary-container": "#332221",
+                            "tertiary-fixed-dim": "#ffb4a9",
+                            "surface-variant": "#f4dfd9",
+                            "on-primary": "#ffffff",
+                            "outline": "#99382b",
+                            "outline-variant": "#d7c2bc",
+                            "surface-bright": "#fff8f6",
+                            "surface-container": "#fceae5",
+                            "secondary-fixed": "#fad8d3",
+                            "background": "#fff8f6",
+                            "secondary": "#99382b",
+                            "on-secondary-fixed": "#332221",
+                            "inverse-primary": "#ffb499",
+                            "on-tertiary-container": "#332221",
+                            "surface-container-high": "#f7e4df",
+                            "on-secondary-fixed-variant": "#66322e",
+                            "tertiary": "#cc3306",
+                            "on-background": "#332221",
+                            "tertiary-container": "#ffdada",
+                            "primary-fixed-dim": "#ffb499",
+                            "on-tertiary-fixed-variant": "#99382b",
+                            "surface": "#fff8f6",
+                            "on-error": "#ffffff",
+                            "primary-container": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-gap": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "display-xl": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "mono-label": ["monospace"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "mono-label": ["12px", {"lineHeight": "1", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-overlay {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col relative grid-overlay">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 font-['Space_Grotesk'] tracking-tight">
+<div class="max-w-[1280px] mx-auto px-8 flex justify-between items-center h-16">
+<div class="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tighter">
+                Pesquisa CompEng
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 dark:text-slate-400 font-bold hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="../index.html">Início</a>
+<a class="text-slate-500 dark:text-slate-400 font-bold hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="pesquisa.html">Pesquisa</a>
+<a class="text-slate-900 dark:text-white border-b-2 border-orange-500 pb-1 font-semibold active:scale-95 transition-transform" href="publicacoes.html">Publicações</a>
+<a class="text-slate-500 dark:text-slate-400 font-bold hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="equipe.html">Equipe</a>
+<a class="text-slate-500 dark:text-slate-400 font-bold hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="parcerias.html">Parcerias</a>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow pt-[104px] pb-section-gap max-w-container-max mx-auto w-full px-8">
+<!-- Page Header & Search -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-display-xl text-display-xl text-primary mb-4">Publicações</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Um arquivo abrangente de nossos artigos de pesquisa, artigos de periódicos e anais de conferências em arquitetura de computadores e engenharia de sistemas.
+                </p>
+</div>
+<!-- Search -->
+<div class="w-full md:w-96 flex flex-col gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input id="input-busca" class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT font-body-md text-on-surface focus:outline-none focus:border-tertiary-fixed focus:ring-1 focus:ring-tertiary-fixed transition-shadow" placeholder="Buscar publicações..." type="text"/>
+</div>
+<div class="flex gap-2">
+<select id="filtro-ano" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-3 py-2 font-label-sm text-label-sm text-on-surface focus:outline-none focus:border-tertiary-fixed">
+<option value="todos">Todos os Anos</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+</select>
+<select id="filtro-topico" class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT px-3 py-2 font-label-sm text-label-sm text-on-surface focus:outline-none focus:border-tertiary-fixed">
+<option value="todos">Todos os Tópicos</option>
+        <option value="Arquitetura">Arquitetura</option>
+        <option value="Segurança">Segurança</option>
+        <option value="Sistemas">Sistemas</option>
+</select>
+</div>
+</div>
+</header>
+<!-- Publications List -->
+<div class="space-y-16">
+<!-- 2024 -->
+<section>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6 border-b border-surface-variant pb-2">2024</h2>
+<div class="grid grid-cols-1 gap-6">
+<!-- Paper Card 1 -->
+<article data-ano="2024" data-topico="Arquitetura" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-3">
+<span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">ISCA 2024</span>
+<span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">Arquitetura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Unidades de Processamento Neuromórfico para Dispositivos de IA de Borda</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                A. Smith, B. Johnson, C. Williams, D. Brown
+                            </p>
+<p class="font-body-md text-body-md text-on-surface max-w-4xl line-clamp-2 mb-4">
+                                Este artigo apresenta uma nova arquitetura para Unidades de Processamento Neuromórfico (NPUs) otimizadas para ambientes de edge computing. Demonstramos uma redução de 40% no consumo de energia, mantendo a precisão no estado da arte em benchmarks padrão de reconhecimento visual.
+                            </p>
+</div>
+<div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
+<a href="../pdf-teste.pdf" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+                                PDF
+</a>
+<button class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+                                DOI
+                            </button>
+</div>
+</article>
+<!-- Paper Card 2 -->
+<article data-ano="2024" data-topico="Segurança" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-3">
+<span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">MICRO 2024</span>
+<span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">Segurança</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Mitigando Ataques de Execução Transitória em Sistemas Multi-Core</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                E. Davis, F. Miller, G. Wilson
+                            </p>
+<p class="font-body-md text-body-md text-on-surface max-w-4xl line-clamp-2 mb-4">
+                                Propomos um mecanismo de hardware leve para isolar dinamicamente os caminhos de execução, prevenindo efetivamente uma ampla classe de vulnerabilidades de execução transitória sem impacto significativo no desempenho em cargas de trabalho altamente concorrentes.
+                            </p>
+</div>
+<div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
+<a href="../pdf-teste.pdf" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+                                PDF
+</a>
+<button class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+                                DOI
+                            </button>
+</div>
+<article data-ano="2024" data-topico="Segurança" class="artigo-publicacao bg-surface-container-lowest border ... (restante das suas classes)">
+</div>
+</section>
+<!-- 2023 -->
+<section>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6 border-b border-surface-variant pb-2">2023</h2>
+<div class="grid grid-cols-1 gap-6">
+<!-- Paper Card 3 -->
+<article data-ano="2023" data-topico="Sistemas" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-3">
+<span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">ASPLOS 2023</span>
+<span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">Sistemas</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Alocação Dinâmica de Recursos em Ambientes de Nuvem Heterogêneos</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                H. Moore, I. Taylor, J. Anderson
+                            </p>
+<p class="font-body-md text-body-md text-on-surface max-w-4xl line-clamp-2 mb-4">
+                                Apresentando um novo algoritmo de agendamento que utiliza aprendizado de máquina para prever as demandas de carga de trabalho, otimizando a alocação de recursos em diversos aceleradores de hardware em data centers em nuvem.
+                            </p>
+</div>
+<div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
+<a href="../pdf-teste.pdf" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+                                PDF
+</a>
+<button class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+                                DOI
+                            </button>
+</div>
+</article>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flat no shadows text-slate-900 dark:text-slate-100 font-['Space_Grotesk'] text-sm transition-all duration-300">
+<div class="max-w-[1280px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-4">
+<span class="text-lg font-bold text-slate-900 dark:text-slate-100">Pesquisa CompEng</span>
+<span class="text-slate-500 dark:text-slate-400">© 2024 Grupo Universitário de Engenharia de Computação. Todos os direitos reservados.</span>
+</div>
+<div class="flex gap-6 md:justify-end items-start">
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Universidade</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Contato</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Privacidade</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Portal Interno</a>
+</div>
+</div>
+</footer>
+<script src="/scripts/pesquisa.js"></script>
+</body>
+</html>

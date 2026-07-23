@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parcerias - Grupo de Pesquisa em Engenharia de Computação</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#c6c6cd",
+                      "on-secondary-fixed-variant": "#3a485c",
+                      "on-error": "#ffffff",
+                      "background": "#f7f9fb",
+                      "surface-variant": "#e0e3e5",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#acedff",
+                      "on-surface": "#191c1e",
+                      "surface-container-highest": "#e0e3e5",
+                      "secondary-fixed-dim": "#b9c7e0",
+                      "on-primary-container": "#7c839b",
+                      "on-tertiary-fixed": "#001f26",
+                      "tertiary-fixed-dim": "#4cd7f6",
+                      "secondary-fixed": "#d5e3fd",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-container": "#d5e3fd",
+                      "on-primary": "#ffffff",
+                      "secondary": "#515f74",
+                      "surface-tint": "#565e74",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f2f4f6",
+                      "inverse-primary": "#bec6e0",
+                      "on-primary-fixed": "#131b2e",
+                      "tertiary-container": "#001f26",
+                      "on-background": "#191c1e",
+                      "on-tertiary": "#ffffff",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-tertiary-container": "#0090a9",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-secondary-container": "#57657b",
+                      "outline": "#76777d",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-bright": "#f7f9fb",
+                      "surface": "#f7f9fb",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#000000",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#eceef0",
+                      "primary-container": "#131b2e",
+                      "primary-fixed": "#dae2fd",
+                      "on-tertiary-fixed-variant": "#004e5c",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#45464d",
+                      "surface-dim": "#d8dadc",
+                      "inverse-surface": "#2d3133",
+                      "tertiary": "#000000",
+                      "on-secondary-fixed": "#0d1c2f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "section-gap": "80px",
+                      "container-max": "1280px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Space Grotesk"
+                      ],
+                      "mono-label": [
+                              "monospace"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-xl": [
+                              "Space Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Space Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-label": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-['Inter']">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-center h-16 max-w-[1280px] mx-auto px-8 w-full">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50 font-['Space_Grotesk']">
+                Pesquisa CompEng
+            </div>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-['Space_Grotesk'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Início</a>
+<a class="font-['Space_Grotesk'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Pesquisa</a>
+<a class="font-['Space_Grotesk'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Publicações</a>
+<a class="font-['Space_Grotesk'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Equipe</a>
+<a class="font-['Space_Grotesk'] font-medium tracking-tight text-slate-900 dark:text-cyan-400 border-b-2 border-cyan-500 pb-1 px-3 py-2" href="#">Parcerias</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-900 p-2 rounded-full transition-colors">
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-section-gap px-8 w-full max-w-[1280px] mx-auto">
+<!-- Header Section -->
+<section class="mb-section-gap max-w-3xl">
+<h1 class="font-display-xl text-display-xl text-primary mb-6">Colaborações Globais em Pesquisa</h1>
+<p class="font-body-lg text-body-lg text-secondary">
+                Avançamos as fronteiras da computação através de parcerias estratégicas com as instituições mais renomadas do mundo. Nossa rede colaborativa acelera a inovação em arquitetura de computadores, inteligência artificial e sistemas embarcados.
+            </p>
+</section>
+<!-- Bento Grid for Partnerships -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-base mb-section-gap relative">
+<!-- Grid overlay background effect -->
+<div class="absolute inset-0 pointer-events-none opacity-5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+<!-- USP -->
+<div class="md:col-span-8 bg-surface-container border border-outline-variant/30 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300">
+<div class="absolute top-0 right-0 w-64 h-64 bg-tertiary-fixed-dim/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+<div class="flex flex-col h-full relative z-10">
+<div class="flex items-center justify-between mb-8">
+<div class="h-16 w-32 bg-white rounded flex items-center justify-center p-2 shadow-sm border border-outline-variant/20">
+<img class="object-contain h-full w-full opacity-80 mix-blend-multiply" data-alt="Abstract minimalist logo representing a university crest in monochrome tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnOBfiPbEUkyGuOUWO9NG3EXX8x6oF1frWltdAhpLFqwAQU4P5hEC2Pfbn3gFN7dMPgEHtODsgMcE25BVMCadt-dZSnOrdi6lqA-wnv6Bmc3ohSJZMlhp119J5bSWu5s6pmJ1fYPMQ39IjzGRvjZIAQCfXxwbag0uPGAet2yekR7HeClveWDUUtPklzdxi0v_9yEQwjGiRH9fiyduxuYvNN6Y1NxX1wRaAw2C0xdz-lW7RCftS2eUMiMwoyQTRod9q87eV4y60FPA"/>
+</div>
+<span class="font-mono-label text-mono-label bg-surface-variant text-on-surface-variant px-3 py-1 rounded-sm uppercase tracking-wider">Nacional</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Universidade de São Paulo (USP)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                        Pesquisa conjunta em Sistemas Tolerantes a Falhas para aplicações espaciais. O laboratório de Arquitetura de Computadores colabora ativamente no design de microprocessadores resilientes à radiação.
+                    </p>
+<div class="flex gap-2 flex-wrap">
+<span class="font-label-sm text-label-sm bg-surface-container-high text-secondary px-3 py-1 rounded">Sistemas Críticos</span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-secondary px-3 py-1 rounded">Microeletrônica</span>
+</div>
+</div>
+</div>
+<!-- UNICAMP -->
+<div class="md:col-span-4 bg-surface-container border border-outline-variant/30 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300">
+<div class="flex flex-col h-full relative z-10">
+<div class="mb-8">
+<div class="h-12 w-24 bg-white rounded flex items-center justify-center p-2 shadow-sm border border-outline-variant/20">
+<img class="object-contain h-full w-full opacity-80 mix-blend-multiply" data-alt="Clean typographic logo for a technical university" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWWSf2ct9gNIy3DiaZvKcANXbguFxp66FzewS1zPwQ6BAze0OU7E17icnsFchUSEsFjGgPxG7Rc1wKLG77RgpCMPxaCnZ3RYaYzU_CTswC0VA7Om86nTHhkeCM5QAi2zm4Wvuq78JuC8Cp75ACOL1Oh7Z64AMxFZITKcxjshOnAi22gdSga4EsEEZHi3nl8B56iAVGnOKgI9ax_-uiz3yPC4HmdxM9w-tRq50tYWgUjfjngsCNb-6uDZTfii1aj3Isp3704Bn-Xuk"/>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">UNICAMP</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                        Projeto temático FAPESP focado em aceleração em hardware para algoritmos de bioinformática e genômica computacional.
+                    </p>
+<div class="mt-auto">
+<span class="font-label-sm text-label-sm bg-surface-container-high text-secondary px-3 py-1 rounded">Bioinformática</span>
+</div>
+</div>
+</div>
+<!-- MIT -->
+<div class="md:col-span-6 bg-[#0a1122] border border-outline-variant/20 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.15)] transition-all duration-300">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-fixed-dim/5 to-transparent pointer-events-none"></div>
+<div class="flex flex-col h-full relative z-10">
+<div class="flex items-center justify-between mb-8">
+<div class="h-16 w-32 bg-white/10 backdrop-blur-sm rounded flex items-center justify-center p-2 border border-white/10">
+<img class="object-contain h-full w-full opacity-90 invert" data-alt="Geometric technical logo composed of solid blocks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_1OfgW1O1BQUFB3GZBGwA28UlCntS272hhbYbvfC2RKVnroZBjXFT0-kePmrmzZgH06XBV7RrUdOd5Eu1ym0nv5Cx2MwWfB7mqnPb-t6iAjT7C5tkHANynzYa_B9K1ST6Y6oPBHMlznCIPYp6g3vEBkrshnpH8yPTsVMUjgHouoGj6wA4wOiNStXQUnanWFKhvLn2z9S1z6Yz_0QLe9u4Z94WqgZmpsy_9Q7S6nY81zMRv6GJU_sXmWVIKNQz57UEtpdo4xQXrZ4"/>
+</div>
+<span class="font-mono-label text-mono-label bg-white/10 text-tertiary-fixed px-3 py-1 rounded-sm uppercase tracking-wider border border-white/10">Internacional</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-white mb-4">Massachusetts Institute of Technology</h3>
+<p class="font-body-md text-body-md text-slate-300 mb-6 flex-grow">
+                        Intercâmbio de pesquisadores e desenvolvimento conjunto de aceleradores tensores de baixo consumo de energia para Edge AI. Parceria financiada por fundos de inovação conjunta.
+                    </p>
+<div class="flex gap-2 flex-wrap mt-auto border-t border-white/10 pt-4">
+<span class="font-label-sm text-label-sm text-tertiary-fixed flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                            Edge AI
+                        </span>
+<span class="font-label-sm text-label-sm text-tertiary-fixed flex items-center gap-1 ml-4">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+                            VLSI Design
+                        </span>
+</div>
+</div>
+</div>
+<!-- Stanford -->
+<div class="md:col-span-6 bg-[#0a1122] border border-outline-variant/20 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.15)] transition-all duration-300">
+<div class="flex flex-col h-full relative z-10">
+<div class="flex items-center justify-between mb-8">
+<div class="h-16 w-32 bg-white/10 backdrop-blur-sm rounded flex items-center justify-center p-2 border border-white/10">
+<img class="object-contain h-full w-full opacity-90 invert" data-alt="Classic serif academic logo with a tree emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0jA4Y6laAhf1pjThzD-NZZ_DtHSkT2CkcTIQWHdF_CWtsIhz3jczi9_jkyMs6KT0HJ-ZN9nRu4opa4A8V6R8NRYsYF2QfArtCnxbkNDvBB22j51Gjk-sBj3_7VM7CJkW98krmMXSFDED65xDl4HXOCdT-G-ancAlU33xCMg62IsJiA5HNtkPzl3D3ipCocsosg30xmkXgHnoRj3uCBJlhagGjtoOHLQjhKRT6quaennYsftHSxXpC8NqLsO3qShkvCNvECG5wV6w"/>
+</div>
+<span class="font-mono-label text-mono-label bg-white/10 text-tertiary-fixed px-3 py-1 rounded-sm uppercase tracking-wider border border-white/10">Internacional</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-white mb-4">Stanford University</h3>
+<p class="font-body-md text-body-md text-slate-300 mb-6 flex-grow">
+                        Colaboração no desenvolvimento de novas hierarquias de memória não-volátil. Foco na modelagem de sistemas de memória e mitigação de gargalos computacionais.
+                    </p>
+<div class="flex gap-2 flex-wrap mt-auto border-t border-white/10 pt-4">
+<span class="font-label-sm text-label-sm text-tertiary-fixed flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">storage</span>
+                            Memórias NVM
+                        </span>
+</div>
+</div>
+</div>
+<!-- Industry Partners (smaller tiles) -->
+<div class="md:col-span-12 mt-8">
+<h4 class="font-mono-label text-mono-label text-secondary uppercase tracking-widest mb-4">Parceiros da Indústria</h4>
+<div class="flex flex-wrap gap-4">
+<div class="bg-surface border border-outline-variant/30 px-6 py-4 rounded flex items-center gap-3 hover:border-tertiary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-secondary">memory</span>
+<span class="font-label-sm text-label-sm text-primary">Intel Corporation</span>
+</div>
+<div class="bg-surface border border-outline-variant/30 px-6 py-4 rounded flex items-center gap-3 hover:border-tertiary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-secondary">developer_board</span>
+<span class="font-label-sm text-label-sm text-primary">NVIDIA</span>
+</div>
+<div class="bg-surface border border-outline-variant/30 px-6 py-4 rounded flex items-center gap-3 hover:border-tertiary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-secondary">dns</span>
+<span class="font-label-sm text-label-sm text-primary">IBM Research</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t mt-auto bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800">
+<div class="max-w-[1280px] mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="font-['Space_Grotesk'] font-bold text-slate-900 dark:text-slate-100">
+                Pesquisa CompEng
+            </div>
+<nav class="flex gap-6 flex-wrap justify-center">
+<a class="text-slate-900 dark:text-white border-b-2 border-cyan-500 pb-1 font-semibold active:scale-95 transition-transform" href="index.html">Início</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200 active:scale-95 transition-transform" href="../pesquisa_pt_br/pesquisa.html">Pesquisa</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200 active:scale-95 transition-transform" href="../publica_es_pt_br/publicacoes.html">Publicações</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200 active:scale-95 transition-transform" href="../equipe_pt_br/equipe.html">Equipe</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200 active:scale-95 transition-transform" href="../parcerias/parcerias.html">Parcerias</a>
+</nav>
+<div class="font-['Inter'] text-sm text-slate-600 dark:text-slate-400">
+                © 2024 Grupo de Pesquisa em Engenharia de Computação. Todos os direitos reservados.
+            </div>
+</div>
+</footer>
+</body></html>

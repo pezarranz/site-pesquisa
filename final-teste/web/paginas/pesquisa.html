@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CompEng Research - Projetos de Pesquisa</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "error-container": "#ffdad6",
+                            "secondary-container": "#fad8d3",
+                            "on-tertiary-fixed": "#332221",
+                            "on-secondary": "#ffffff",
+                            "error": "#ba1a1a",
+                            "surface-container-low": "#fff1ed",
+                            "surface-dim": "#e8d6d1",
+                            "primary": "#ff5000",
+                            "on-surface": "#332221",
+                            "on-primary-fixed": "#332221",
+                            "on-error-container": "#410002",
+                            "secondary-fixed-dim": "#e2bdb7",
+                            "surface-container-highest": "#f1ded9",
+                            "on-tertiary": "#ffffff",
+                            "on-surface-variant": "#66322e",
+                            "primary-fixed": "#ffdbcf",
+                            "inverse-on-surface": "#fff8f6",
+                            "surface-tint": "#ff5000",
+                            "surface-container-lowest": "#ffffff",
+                            "on-primary-fixed-variant": "#cc3306",
+                            "inverse-surface": "#332221",
+                            "tertiary-fixed": "#ffdada",
+                            "on-primary-container": "#332221",
+                            "on-secondary-container": "#332221",
+                            "tertiary-fixed-dim": "#ffb4a9",
+                            "surface-variant": "#f4dfd9",
+                            "on-primary": "#ffffff",
+                            "outline": "#99382b",
+                            "outline-variant": "#d7c2bc",
+                            "surface-bright": "#fff8f6",
+                            "surface-container": "#fceae5",
+                            "secondary-fixed": "#fad8d3",
+                            "background": "#fff8f6",
+                            "secondary": "#99382b",
+                            "on-secondary-fixed": "#332221",
+                            "inverse-primary": "#ffb499",
+                            "on-tertiary-container": "#332221",
+                            "surface-container-high": "#f7e4df",
+                            "on-secondary-fixed-variant": "#66322e",
+                            "tertiary": "#cc3306",
+                            "on-background": "#332221",
+                            "tertiary-container": "#ffdada",
+                            "primary-fixed-dim": "#ffb499",
+                            "on-tertiary-fixed-variant": "#99382b",
+                            "surface": "#fff8f6",
+                            "on-error": "#ffffff",
+                            "primary-container": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "margin": "32px",
+                            "container-max": "1280px",
+                            "gutter": "24px",
+                            "base": "8px",
+                            "section-gap": "80px"
+                    },
+                    "fontFamily": {
+                            "body-lg": ["Inter"],
+                            "label-sm": ["Inter"],
+                            "body-md": ["Inter"],
+                            "headline-lg": ["Space Grotesk"],
+                            "display-xl": ["Space Grotesk"],
+                            "headline-md": ["Space Grotesk"],
+                            "mono-label": ["Space Mono", "monospace"]
+                    },
+                    "fontSize": {
+                            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "label-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                            "display-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "mono-label": ["12px", {"lineHeight": "1", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Subtle technical grid background */
+        .bg-tech-grid {
+                       background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="bg-white/90 dark:bg-slate-950/90 backdrop-blur-md fixed top-0 w-full z-50 border-b border-slate-200/60 dark:border-slate-800/60 font-['Space_Grotesk'] tracking-tight">
+<div class="max-w-[1280px] mx-auto px-8 flex justify-between items-center h-16">
+<div class="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tighter">
+                Pesquisa CompEng
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-orange-500 dark:hover:text-orange-600 transition-colors duration-200 active:scale-95 transition-transform" href="../index.html">Início</a>
+<!-- Active Navigation Item -->
+<a class="text-slate-900 dark:text-white border-b-2 border-orange-500 pb-1 font-semibold active:scale-95 transition-transform" href="pesquisa.html">Pesquisa</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="publicacoes.html">Publicações</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="equipe.html">Equipe</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 active:scale-95 transition-transform" href="parcerias.html">Parcerias</a>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-section-gap px-gutter w-full max-w-[1280px] mx-auto grid-pattern relative">
+<!-- Header Section -->
+<header class="mb-margin">
+<h1 class="font-display-xl text-display-xl text-on-surface mb-base">Projetos de Pesquisa</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Explorando as fronteiras da engenharia de computação através de computação de alto desempenho, novas arquiteturas e design algorítmico avançado.
+            </p>
+</header>
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Project Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300 flex flex-col">
+<div class="h-48 relative overflow-hidden bg-surface-container-low">
+<img alt="circuit board components macro shot with shallow depth of field in cool blue lighting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close up macro shot of a complex green circuit board with glowing microchips and copper traces in dramatic studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVmQuRqhBMjBzcL0FMuDWXuoSqCij5BqiAdFZ5JVHQpNOAlD759uI3_u4DEr43utCifIaGzlJLjXsxTc-k6hUmvQdLsXWLYjqROyBcHOA51b6zhhKTF45j2n06ON4Iqsn7eClWisWaLc0A3q910hfP7qyqRgsHFkIWe3uKrq0fmlrd1cfiAsASFpwdBGTUjpMrGOy4EnSlK7FdnOeezlGUeEn34O7uIyoPpZGp_yukN76T83Zhu8WoX6I3XD49483vr4sRc_nNxko"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase font-bold tracking-wider">
+                        Em andamento
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow gap-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">Arquitetura</span>
+<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">IA</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Unidades de Processamento Neuromórfico para IA na Borda</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                        Desenvolvendo aceleradores de hardware de ultra-baixo consumo de energia inspirados em estruturas neurais para permitir inferência complexa de aprendizado de máquina diretamente em dispositivos de borda com restrições severas de energia.
+                    </p>
+</div>
+</article>
+<!-- Project Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300 flex flex-col">
+<div class="h-48 relative overflow-hidden bg-surface-container-low">
+<img alt="abstract visualization of quantum computing with glowing lines and spheres forming a complex network in dark space" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="abstract 3d visualization of quantum computing nodes and particle strings illuminating a dark void with neon blue and purple colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLGQeuGy40264aTjhhz75VYwiZEexW8LazYfovh4-9E8jNlJ2gFsyrftYrObCMQNAchsFwJlI8-lF_eOndjdd8eQn37F4xclHI8_TxSJjMSPsEAnB0bNa2FMeLPrE4aO-HEVE0ZMVpX2mGFrtt16sfZ1ofRmf7aPY5r3s-tUgWkCIADtchOAxrehkjtC-fmoIyqJux2gPZBySiB4k55--83grMdpuy1tBIaP-QgHVnwSJAu3BVpLI_au68SKxE9V85L_lSvIE5tGk"/>
+<div class="absolute top-4 right-4 bg-surface-variant text-on-surface-variant border border-outline-variant font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase tracking-wider">
+                        Concluído
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow gap-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">Quântica</span>
+<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">Teoria</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Algoritmos de Correção de Erros Quânticos</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                        Investigação de novos códigos de superfície e métodos topológicos de correção de erros para melhorar a estabilidade e os tempos de coerência de qubits lógicos em sistemas quânticos ruidosos de escala intermediária.
+                    </p>
+</div>
+</article>
+<!-- Project Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300 flex flex-col">
+<div class="h-48 relative overflow-hidden bg-surface-container-low">
+<img alt="server racks in a modern data center bathed in cool blue and green LED lighting indicating active network connections" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="endless rows of black server racks in a modern data center aisle illuminated by cool blue indicator lights with a clean clinical aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd1nkCzHKlLSLGoiF_WEFl5pYAQWg8IpGLWeSSMmRV4FIQjhBjPPienak54ITS3zPzO3fqFA0mS3MrQ7nmI-Tb4lV3RCviGILI1KXpLFPVLUoCfQc5eG58_DSBrfEnrWVBUM2pQEx3FFyQY3qaYA0iiMUA8hkN79Z6ZPsLUD_DCNGoLUcYIkBwQbmDOD0Z4V77-lXGk8Fcumq9LHm2_w0S3Qe8KQ95FRM2N3eIFtbq1b4TRbFHQ0Rg-s8cjK6rULHynoo2NQ2myHo"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase font-bold tracking-wider">
+                        Em andamento
+                    </div>
+</div>
+<div class="p-6 flex flex-col flex-grow gap-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">Redes</span>
+<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">Sustentabilidade</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Roteamento de Data Center Proporcional à Energia</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                        Projetando topologias de rede adaptativas e protocolos de roteamento que dimensionam dinamicamente o consumo de energia com base nas cargas de tráfego em tempo real, visando estados de ociosidade com desperdício zero.
+                    </p>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flat no shadows text-slate-900 dark:text-slate-100 font-['Space_Grotesk'] text-sm transition-all duration-300">
+<div class="max-w-[1280px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-4">
+<span class="text-lg font-bold text-slate-900 dark:text-slate-100">Pesquisa CompEng</span>
+<span class="text-slate-500 dark:text-slate-400">© 2024 Grupo Universitário de Engenharia de Computação. Todos os direitos reservados.</span>
+</div>
+<div class="flex gap-6 md:justify-end items-start">
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Universidade</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Contato</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Privacidade</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline decoration-orange-600 underline-offset-4" href="#">Portal Interno</a>
+</div>
+</div>
+</footer>
+</body></html> 
