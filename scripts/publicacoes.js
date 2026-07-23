@@ -42,37 +42,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 artigo.style.display = 'none'; 
             }
         });
-    // NOVA ETAPA: Limpeza das seções vazias
-        // 1. Captura todas as seções (os blocos de cada ano)
-        const secoes = document.querySelectorAll('section');
+    // === LÓGICA DE CÓPIA DO ENDEREÇO/DOI ===
 
-        // 2. Faz um loop por cada seção
-        secoes.forEach(secao => {
-            // Pega todos os artigos APENAS dentro desta seção específica
-            const artigosDestaSecao = secao.querySelectorAll('.artigo-publicacao');
+    // 1. Captura todos os botões da página que possuem a classe 'btn-copiar-doi'
+    const botoesDoi = document.querySelectorAll('.btn-copiar-doi');
+
+    // 2. Faz um loop para adicionar o "espião" de clique em CADA botão individualmente
+    botoesDoi.forEach(botao => {
+        botao.addEventListener('click', function() {
             
-            // Variável de controle: assume que não tem nada visível no início
-            let temAlgoVisivel = false;
+            // 3. Lê o endereço exato que você cadastrou no 'data-doi' deste botão específico
+            const codigoDoi = botao.getAttribute('data-doi');
 
-            // Verifica card por card desta seção
-            artigosDestaSecao.forEach(artigo => {
-                // Se o display NÃO for 'none', significa que ele está visível na tela
-                if (artigo.style.display !== 'none') {
-                    temAlgoVisivel = true;
-                }
-            });
+            // Proteção: se o botão não tiver nada cadastrado, a função para por aqui
+            if (!codigoDoi) return; 
 
-            // Se depois de verificar tudo, não achou nada visível, esconde a seção (e o título do ano junto)
-            if (!temAlgoVisivel) {
-                secao.style.display = 'none';
-            } else {
-                secao.style.display = ''; // Mostra a seção se tiver algo
-            }
+            // 4. Aciona a Clipboard API para copiar o endereço para o Ctrl+C
+            navigator.clipboard.writeText(codigoDoi)
+                .then(() => {
+                    // === SUCESSO: FEEDBACK VISUAL ===
+                    // Busca aquele <span> isolado que criamos dentro deste botão clicado
+                    const spanTexto = botao.querySelector('.texto-botao');
+                    const textoOriginal = spanTexto.textContent;
+                    
+                    // Altera o texto e troca as cores do Tailwind para verde
+                    spanTexto.textContent = "Copiado!";
+                    botao.classList.remove("border-outline", "text-on-surface");
+                    botao.classList.add("border-green-600", "text-green-600");
+
+                    // 5. Cronômetro: reverte para o estado normal após 2 segundos (2000 ms)
+                    setTimeout(() => {
+                        spanTexto.textContent = textoOriginal;
+                        botao.classList.remove("border-green-600", "text-green-600");
+                        botao.classList.add("border-outline", "text-on-surface");
+                    }, 2000);
+                })
+                .catch(erro => {
+                    // === FALHA: TRATAMENTO DE ERRO ===
+                    console.error("Falha ao copiar o endereço: ", erro);
+                    alert("Não foi possível copiar o link para a área de transferência.");
+                });
         });
-    }
-
-    // 4. Adiciona os "espiões" para rodar a função toda vez que o usuário interagir
-    inputBusca.addEventListener('input', aplicarFiltros);
-    filtroAno.addEventListener('change', aplicarFiltros);
-    filtroTopico.addEventListener('change', aplicarFiltros);
+    });
 });
