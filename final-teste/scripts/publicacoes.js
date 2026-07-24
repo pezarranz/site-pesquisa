@@ -4,23 +4,19 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 
 // 2. Suas credenciais
 const firebaseConfig = {
-  apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
-  authDomain: "site-pesquisa-engcomp.firebaseapp.com",
-  projectId: "site-pesquisa-engcomp",
-  storageBucket: "site-pesquisa-engcomp.firebasestorage.app",
-  messagingSenderId: "661838953834",
-  appId: "1:661838953834:web:484769ea2fde9077ca3913"
+    apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
+    authDomain: "site-pesquisa-engcomp.firebaseapp.com",
+    projectId: "site-pesquisa-engcomp",
+    storageBucket: "site-pesquisa-engcomp.firebasestorage.app",
+    messagingSenderId: "661838953834",
+    appId: "1:661838953834:web:484769ea2fde9077ca3913"
 };
 
-// 3. LIGANDO O MOTOR (O que estava faltando)
+// 3. LIGANDO O MOTOR
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// A partir daqui, você pode continuar com a lógica da página...
-
-// Função principal para buscar e renderizar os dados
-// Função principal para buscar e renderizar os dados do Firebase
-// Função principal para buscar e renderizar os dados do Firebase
+// 4. Função principal para buscar e renderizar os dados do Firebase
 async function carregarPublicacoes() {
     const conteiner = document.getElementById('lista-publicacoes');
     
@@ -33,8 +29,6 @@ async function carregarPublicacoes() {
         querySnapshot.forEach((doc) => {
             const artigo = doc.data();
             
-            // AQUI ESTÁ O SEU HTML! 
-            // Ele agora funciona como um molde dinâmico:
             const cardHTML = `
             <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
                 <div class="flex-grow">
@@ -63,102 +57,76 @@ async function carregarPublicacoes() {
             </article>
             `;
             
-            // Injeta o molde finalizado dentro da <div> vazia do seu HTML
             conteiner.innerHTML += cardHTML;
         });
+
+        // 5. ATIVA OS FILTROS SOMENTE DEPOIS QUE OS CARDS ESTÃO NA TELA
+        configurarFiltros();
 
     } catch (erro) {
         console.error("Erro ao comunicar com o banco de dados:", erro);
     }
 }
 
-// Manda rodar a função assim que a página carregar
-document.addEventListener('DOMContentLoaded', () => {
-    carregarPublicacoes();
-});
-
-// 6. Manda executar a função assim que a página terminar de carregar
-document.addEventListener('DOMContentLoaded', () => {
-    carregarPublicacoes();
-});
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// Aguarda o HTML ser totalmente carregado pelo navegador
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. Captura os campos de interação do usuário
+// 6. Lógica de filtragem separada em uma função
+function configurarFiltros() {
     const inputBusca = document.getElementById('input-busca');
     const filtroAno = document.getElementById('filtro-ano');
     const filtroTopico = document.getElementById('filtro-topico');
     
-    // 2. Captura todos os cards de publicação que configuramos
+    // Captura os cards recém-criados
     const artigos = document.querySelectorAll('.artigo-publicacao');
 
-    // 3. Função que executa a lógica de filtragem
     function aplicarFiltros() {
-        // Pega os valores atuais dos inputs e converte para minúsculo
-        const termoBuscado = inputBusca.value.toLowerCase();
-        const anoSelecionado = filtroAno.value.toLowerCase();
-        const topicoSelecionado = filtroTopico.value.toLowerCase();
+        const termoBuscado = inputBusca ? inputBusca.value.toLowerCase() : "";
+        const anoSelecionado = filtroAno ? filtroAno.value.toLowerCase() : "";
+        const topicoSelecionado = filtroTopico ? filtroTopico.value.toLowerCase() : "";
 
-        // Faz um loop por todos os cards capturados
         artigos.forEach(artigo => {
-            
-            // Busca o título de forma segura (evita o erro de null pointer)
             const elementoTitulo = artigo.querySelector('h3');
             const titulo = elementoTitulo ? elementoTitulo.textContent.toLowerCase() : ""; 
             
-            // Lê as informações dos atributos data-ano e data-topico
             const anoDoArtigo = (artigo.getAttribute('data-ano') || "").toLowerCase();
             const topicoDoArtigo = (artigo.getAttribute('data-topico') || "").toLowerCase();
 
-            // Analisa as regras lógicas: 
-            // O título inclui o termo digitado?
             const bateNome = titulo.includes(termoBuscado);
-            // O filtro está em 'todos' ou o ano do artigo é igual ao ano selecionado?
             const bateAno = (anoSelecionado === 'todos') || (anoDoArtigo === anoSelecionado);
-            // O filtro está em 'todos' ou o tópico do artigo é igual ao selecionado?
             const bateTopico = (topicoSelecionado === 'todos') || (topicoDoArtigo === topicoSelecionado);
 
-            // Se o card passar nas 3 condições, ele aparece. Se falhar em uma, ele some.
             if (bateNome && bateAno && bateTopico) {
                 artigo.style.display = ''; 
             } else {
                 artigo.style.display = 'none'; 
             }
         });
-    // NOVA ETAPA: Limpeza das seções vazias
-        // 1. Captura todas as seções (os blocos de cada ano)
+
+        // Lógica para esconder os títulos dos anos vazios
         const secoes = document.querySelectorAll('section');
-
-        // 2. Faz um loop por cada seção
         secoes.forEach(secao => {
-            // Pega todos os artigos APENAS dentro desta seção específica
             const artigosDestaSecao = secao.querySelectorAll('.artigo-publicacao');
-            
-            // Variável de controle: assume que não tem nada visível no início
             let temAlgoVisivel = false;
-
-            // Verifica card por card desta seção
+            
             artigosDestaSecao.forEach(artigo => {
-                // Se o display NÃO for 'none', significa que ele está visível na tela
                 if (artigo.style.display !== 'none') {
                     temAlgoVisivel = true;
                 }
             });
 
-            // Se depois de verificar tudo, não achou nada visível, esconde a seção (e o título do ano junto)
             if (!temAlgoVisivel) {
                 secao.style.display = 'none';
             } else {
-                secao.style.display = ''; // Mostra a seção se tiver algo
+                secao.style.display = ''; 
             }
         });
     }
 
-    // 4. Adiciona os "espiões" para rodar a função toda vez que o usuário interagir
-    inputBusca.addEventListener('input', aplicarFiltros);
-    filtroAno.addEventListener('change', aplicarFiltros);
-    filtroTopico.addEventListener('change', aplicarFiltros);
+    // Adiciona os ouvintes de eventos para os filtros
+    if(inputBusca) inputBusca.addEventListener('input', aplicarFiltros);
+    if(filtroAno) filtroAno.addEventListener('change', aplicarFiltros);
+    if(filtroTopico) filtroTopico.addEventListener('change', aplicarFiltros);
+}
+
+// 7. Ponto de partida: Manda executar a função assim que a página terminar de carregar
+document.addEventListener('DOMContentLoaded', () => {
+    carregarPublicacoes();
 });
