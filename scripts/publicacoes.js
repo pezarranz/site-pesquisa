@@ -19,26 +19,24 @@ const db = getFirestore(app);
 // A partir daqui, você pode continuar com a lógica da página...
 
 // Função principal para buscar e renderizar os dados
+// Função principal para buscar e renderizar os dados do Firebase
 async function carregarPublicacoes() {
-    // 1. Encontra o contêiner vazio no HTML
     const conteiner = document.getElementById('lista-publicacoes');
     
-    // Se não encontrar o contêiner na página, interrompe a função para não dar erro
+    // Se não encontrar a div na página, interrompe
     if (!conteiner) return; 
 
-    // Limpa o contêiner (útil se você chamar essa função de novo ao usar um filtro)
+    // Limpa a tela para os novos cards
     conteiner.innerHTML = ''; 
 
     try {
-        // 2. Faz o download da coleção "publicacoes" lá do servidor do Google
         const querySnapshot = await getDocs(collection(db, "publicacoes"));
         
-        // 3. Faz um loop (passa por cada artigo que ele achou no banco)
-        // 3. Faz um loop (passa por cada artigo que ele achou no banco)
         querySnapshot.forEach((doc) => {
             const artigo = doc.data();
             
-            // 4. Monta o HTML exato do seu card, preenchendo com os dados do Firebase
+            // AQUI ESTÁ A ESTRUTURA BASE QUE FALTAVA!
+            // Misturando o seu design HTML com os dados do Firebase:
             const cardHTML = `
                 <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
                     <div class="flex-grow">
@@ -67,7 +65,7 @@ async function carregarPublicacoes() {
                 </article>
             `;
             
-            // 5. Injeta o card finalizado dentro do contêiner no HTML
+            // Injeta o molde finalizado dentro da <div> vazia do seu HTML
             conteiner.innerHTML += cardHTML;
         });
 
@@ -75,6 +73,9 @@ async function carregarPublicacoes() {
         console.error("Erro ao comunicar com o banco de dados:", erro);
     }
 }
+
+// Manda rodar a função
+carregarPublicacoes();
 
 // 6. Manda executar a função assim que a página terminar de carregar
 document.addEventListener('DOMContentLoaded', () => {
