@@ -20,13 +20,11 @@ const db = getFirestore(app);
 
 // Função principal para buscar e renderizar os dados
 // Função principal para buscar e renderizar os dados do Firebase
+// Função principal para buscar e renderizar os dados do Firebase
 async function carregarPublicacoes() {
     const conteiner = document.getElementById('lista-publicacoes');
     
-    // Se não encontrar a div na página, interrompe
     if (!conteiner) return; 
-
-    // Limpa a tela para os novos cards
     conteiner.innerHTML = ''; 
 
     try {
@@ -35,34 +33,34 @@ async function carregarPublicacoes() {
         querySnapshot.forEach((doc) => {
             const artigo = doc.data();
             
-            // AQUI ESTÁ A ESTRUTURA BASE QUE FALTAVA!
-            // Misturando o seu design HTML com os dados do Firebase:
+            // AQUI ESTÁ O SEU HTML! 
+            // Ele agora funciona como um molde dinâmico:
             const cardHTML = `
-                <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
-                    <div class="flex-grow">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.conferencia} ${artigo.ano}</span>
-                            <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.topico}</span>
-                        </div>
-                        <h3 class="font-headline-md text-headline-md text-primary mb-2">${artigo.titulo}</h3>
-                        <p class="font-body-md text-body-md text-on-surface-variant mb-4">
-                            ${artigo.autores}
-                        </p>
-                        <p class="font-body-md text-body-md text-on-surface max-w-4xl line-clamp-2 mb-4">
-                            ${artigo.resumo}
-                        </p>
+            <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
+                <div class="flex-grow">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.conferencia} ${artigo.ano}</span>
+                        <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.topico}</span>
                     </div>
-                    <div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
-                        <a href="${artigo.link_pdf}" target="_blank" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
-                            <span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
-                            PDF
-                        </a>
-                        <a href="${artigo.doi}" target="_blank" rel="noopener noreferrer" class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
-                            <span class="texto-botao">DOI</span>
-                        </a>
-                    </div>
-                </article>
+                    <h3 class="font-headline-md text-headline-md text-primary mb-2">${artigo.titulo}</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                        ${artigo.autores}
+                    </p>
+                    <p class="font-body-md text-body-md text-on-surface max-w-4xl line-clamp-2 mb-4">
+                        ${artigo.resumo}
+                    </p>
+                </div>
+                <div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
+                    <a href="${artigo.link_pdf}" target="_blank" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
+                        <span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+                        PDF
+                    </a>
+                    <a href="${artigo.doi}" target="_blank" rel="noopener noreferrer" class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+                        <span class="texto-botao">DOI</span>
+                    </a>
+                </div>
+            </article>
             `;
             
             // Injeta o molde finalizado dentro da <div> vazia do seu HTML
@@ -74,8 +72,10 @@ async function carregarPublicacoes() {
     }
 }
 
-// Manda rodar a função
-carregarPublicacoes();
+// Manda rodar a função assim que a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+    carregarPublicacoes();
+});
 
 // 6. Manda executar a função assim que a página terminar de carregar
 document.addEventListener('DOMContentLoaded', () => {
