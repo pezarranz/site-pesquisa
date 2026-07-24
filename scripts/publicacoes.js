@@ -1,3 +1,88 @@
+// 1. Apenas os imports via URL (CDN)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// 2. Suas credenciais
+const firebaseConfig = {
+  apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
+  authDomain: "site-pesquisa-engcomp.firebaseapp.com",
+  projectId: "site-pesquisa-engcomp",
+  storageBucket: "site-pesquisa-engcomp.firebasestorage.app",
+  messagingSenderId: "661838953834",
+  appId: "1:661838953834:web:484769ea2fde9077ca3913"
+};
+
+// 3. LIGANDO O MOTOR (O que estava faltando)
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// A partir daqui, você pode continuar com a lógica da página...
+
+// Função principal para buscar e renderizar os dados
+async function carregarPublicacoes() {
+    // 1. Encontra o contêiner vazio no HTML
+    const conteiner = document.getElementById('lista-publicacoes');
+    
+    // Se não encontrar o contêiner na página, interrompe a função para não dar erro
+    if (!conteiner) return; 
+
+    // Limpa o contêiner (útil se você chamar essa função de novo ao usar um filtro)
+    conteiner.innerHTML = ''; 
+
+    try {
+        // 2. Faz o download da coleção "publicacoes" lá do servidor do Google
+        const querySnapshot = await getDocs(collection(db, "publicacoes"));
+        
+        // 3. Faz um loop (passa por cada artigo que ele achou no banco)
+        // 3. Faz um loop (passa por cada artigo que ele achou no banco)
+        querySnapshot.forEach((doc) => {
+            const artigo = doc.data();
+            
+            // 4. Monta o HTML exato do seu card, preenchendo com os dados do Firebase
+            const cardHTML = `
+                <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.conferencia} ${artigo.ano}</span>
+                            <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.topico}</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-2">${artigo.titulo}</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                            ${artigo.autores}
+                        </p>
+                        <p class="font-body-md text-body-md text-on-surface max-w-4xl line-clamp-2 mb-4">
+                            ${artigo.resumo}
+                        </p>
+                    </div>
+                    <div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
+                        <a href="${artigo.link_pdf}" target="_blank" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
+                            <span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
+                            PDF
+                        </a>
+                        <a href="${artigo.doi}" target="_blank" rel="noopener noreferrer" class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+                            <span class="texto-botao">DOI</span>
+                        </a>
+                    </div>
+                </article>
+            `;
+            
+            // 5. Injeta o card finalizado dentro do contêiner no HTML
+            conteiner.innerHTML += cardHTML;
+        });
+
+    } catch (erro) {
+        console.error("Erro ao comunicar com o banco de dados:", erro);
+    }
+}
+
+// 6. Manda executar a função assim que a página terminar de carregar
+document.addEventListener('DOMContentLoaded', () => {
+    carregarPublicacoes();
+});
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 // Aguarda o HTML ser totalmente carregado pelo navegador
 document.addEventListener('DOMContentLoaded', function() {
     
