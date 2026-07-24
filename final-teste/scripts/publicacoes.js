@@ -23,11 +23,19 @@ async function carregarPublicacoes() {
     if (!conteiner) return; 
     conteiner.innerHTML = ''; 
 
+    // NOVAS ESTRUTURAS: 'Sets' guardam valores únicos. Se vierem 10 artigos de 2024, ele salva '2024' só uma vez.
+    const anosUnicos = new Set();
+    const topicosUnicos = new Set();
+
     try {
         const querySnapshot = await getDocs(collection(db, "publicacoes"));
         
         querySnapshot.forEach((doc) => {
             const artigo = doc.data();
+            
+            // Extrai o ano e o tópico do banco e adiciona aos nossos conjuntos
+            if (artigo.ano) anosUnicos.add(artigo.ano);
+            if (artigo.topico) topicosUnicos.add(artigo.topico);
             
             const cardHTML = `
             <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
@@ -60,11 +68,48 @@ async function carregarPublicacoes() {
             conteiner.innerHTML += cardHTML;
         });
 
+        // CHAMA A NOVA FUNÇÃO PARA INJETAR AS OPÇÕES NO HTML
+        atualizarFiltrosDinamicos(anosUnicos, topicosUnicos);
+
         // 5. ATIVA OS FILTROS SOMENTE DEPOIS QUE OS CARDS ESTÃO NA TELA
         configurarFiltros();
 
     } catch (erro) {
         console.error("Erro ao comunicar com o banco de dados:", erro);
+    }
+}
+
+// NOVA FUNÇÃO: Transforma os dados extraídos em <option> no HTML
+function atualizarFiltrosDinamicos(anos, topicos) {
+    const selectAno = document.getElementById('filtro-ano');
+    const selectTopico = document.getElementById('filtro-topico');
+
+    if (selectAno) {
+        // Converte o Set para Array e ordena de forma decrescente (mais novo pro mais antigo)
+        const anosOrdenados = Array.from(anos).sort((a, b) => b - a);
+        
+        // Reseta o menu mantendo apenas a opção "Todos os Anos"
+        selectAno.innerHTML = '<option value="todos">Todos os Anos</option>';
+        
+        // Injeta os anos reais encontrados no banco
+        anosOrdenados.forEach(ano => {
+            selectAno.innerHTML += `<option value="${ano}">${ano}</option>`;
+        });
+    }
+
+    if (selectTopico) {
+        // Converte o Set para Array e ordena em ordem alfabética
+        const topicosOrdenados = Array.from(topicos).sort();
+        
+        // Reseta o menu mantendo apenas a opção "Todos os Tópicos"
+        selectTopico.innerHTML = '<option value="todos">Todos os Tópicos</option>';
+        
+        // Injeta os tópicos reais encontrados no banco
+        topicosOrdenados.forEach(topico => {
+            // Formata para garantir que a primeira letra fique maiúscula visualmente
+            const topicoFormatado = topico.charAt(0).toUpperCase() + topico.slice(1);
+            selectTopico.innerHTML += `<option value="${topico}">${topicoFormatado}</option>`;
+        });
     }
 }
 
