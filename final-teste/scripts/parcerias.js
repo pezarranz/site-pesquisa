@@ -61,7 +61,7 @@ async function carregarParcerias() {
 
             let cardHTML = '';
 
-            // Card 1: Largo Claro (USP)
+            // Card 1: Largo Claro
             if (ciclo === 0) {
                 cardHTML = `
                 <div class="md:col-span-8 bg-surface-container border border-outline-variant/30 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300">
@@ -79,7 +79,7 @@ async function carregarParcerias() {
                     </div>
                 </div>`;
             } 
-            // Card 2: Estreito Claro (UNICAMP)
+            // Card 2: Estreito Claro 
             else if (ciclo === 1) {
                 cardHTML = `
                 <div class="md:col-span-4 bg-surface-container border border-outline-variant/30 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-all duration-300">
@@ -95,7 +95,7 @@ async function carregarParcerias() {
                     </div>
                 </div>`;
             } 
-            // Cards 3 e 4: Escuros (MIT / Stanford)
+            // Cards 3 e 4: Escuros 1 e 2
             else if (ciclo === 2 || ciclo === 3) {
                 cardHTML = `
                 <div class="md:col-span-6 bg-[#0a1122] border border-outline-variant/20 rounded-lg p-8 relative overflow-hidden group hover:shadow-[0px_4px_20px_rgba(15,23,42,0.15)] transition-all duration-300">
