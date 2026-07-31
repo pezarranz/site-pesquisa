@@ -145,26 +145,6 @@ function configurarFiltros() {
             }
         });
 
-        // Lógica para esconder os títulos dos anos vazios
-        const secoes = document.querySelectorAll('section');
-        secoes.forEach(secao => {
-            const artigosDestaSecao = secao.querySelectorAll('.artigo-publicacao');
-            let temAlgoVisivel = false;
-            
-            artigosDestaSecao.forEach(artigo => {
-                if (artigo.style.display !== 'none') {
-                    temAlgoVisivel = true;
-                }
-            });
-
-            if (!temAlgoVisivel) {
-                secao.style.display = 'none';
-            } else {
-                secao.style.display = ''; 
-            }
-        });
-    }
-
     // Adiciona os ouvintes de eventos para os filtros
     if(inputBusca) inputBusca.addEventListener('input', aplicarFiltros);
     if(filtroAno) filtroAno.addEventListener('change', aplicarFiltros);
@@ -175,3 +155,4 @@ function configurarFiltros() {
 document.addEventListener('DOMContentLoaded', () => {
     carregarPublicacoes();
 });
+}
