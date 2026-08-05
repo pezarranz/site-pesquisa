@@ -1,8 +1,8 @@
-// 1. Apenas os imports via URL (CDN)
+// Imports do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// 2. Suas credenciais
+// Credenciais
 const firebaseConfig = {
     apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
     authDomain: "site-pesquisa-engcomp.firebaseapp.com",
@@ -12,18 +12,17 @@ const firebaseConfig = {
     appId: "1:661838953834:web:484769ea2fde9077ca3913"
 };
 
-// 3. LIGANDO O MOTOR
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 4. Função principal para buscar e renderizar os dados do Firebase
+// Função Principal
 async function carregarPublicacoes() {
     const conteiner = document.getElementById('lista-publicacoes');
     
     if (!conteiner) return; 
     conteiner.innerHTML = ''; 
 
-    // NOVAS ESTRUTURAS: 'Sets' guardam valores únicos. Se vierem 10 artigos de 2024, ele salva '2024' só uma vez.
+    // 'Sets' guardam valores únicos. Se vierem 10 artigos de 2024, ele salva '2024' só uma vez.
     const anosUnicos = new Set();
     const topicosUnicos = new Set();
 
@@ -68,10 +67,10 @@ async function carregarPublicacoes() {
             conteiner.innerHTML += cardHTML;
         });
 
-        // CHAMA A NOVA FUNÇÃO PARA INJETAR AS OPÇÕES NO HTML
+        // chama a função para injetar as opções no thml
         atualizarFiltrosDinamicos(anosUnicos, topicosUnicos);
 
-        // 5. ATIVA OS FILTROS SOMENTE DEPOIS QUE OS CARDS ESTÃO NA TELA
+        // ativa os filtros depois de ter carregado os cards
         configurarFiltros();
 
     } catch (erro) {
@@ -79,7 +78,7 @@ async function carregarPublicacoes() {
     }
 }
 
-// NOVA FUNÇÃO: Transforma os dados extraídos em <option> no HTML
+// Transforma os dados extraídos em <option> no HTML
 function atualizarFiltrosDinamicos(anos, topicos) {
     const selectAno = document.getElementById('filtro-ano');
     const selectTopico = document.getElementById('filtro-topico');
@@ -91,7 +90,7 @@ function atualizarFiltrosDinamicos(anos, topicos) {
         // Reseta o menu mantendo apenas a opção "Todos os Anos"
         selectAno.innerHTML = '<option value="todos">Todos os Anos</option>';
         
-        // Injeta os anos reais encontrados no banco
+        // insere os anos reais encontrados no banco
         anosOrdenados.forEach(ano => {
             selectAno.innerHTML += `<option value="${ano}">${ano}</option>`;
         });
@@ -104,16 +103,16 @@ function atualizarFiltrosDinamicos(anos, topicos) {
         // Reseta o menu mantendo apenas a opção "Todos os Tópicos"
         selectTopico.innerHTML = '<option value="todos">Todos os Tópicos</option>';
         
-        // Injeta os tópicos reais encontrados no banco
+        // insere os tópicos reais encontrados no banco
         topicosOrdenados.forEach(topico => {
-            // Formata para garantir que a primeira letra fique maiúscula visualmente
+            // Formatação para garantir que a primeira letra fique maiúscula visualmente
             const topicoFormatado = topico.charAt(0).toUpperCase() + topico.slice(1);
             selectTopico.innerHTML += `<option value="${topico}">${topicoFormatado}</option>`;
         });
     }
 }
 
-// 6. Lógica de filtragem separada em uma função
+// Lógica de filtragem separada em uma função
 function configurarFiltros() {
     const inputBusca = document.getElementById('input-busca');
     const filtroAno = document.getElementById('filtro-ano');
@@ -171,7 +170,6 @@ function configurarFiltros() {
     if(filtroTopico) filtroTopico.addEventListener('change', aplicarFiltros);
 }
 
-// 7. Ponto de partida: Manda executar a função assim que a página terminar de carregar
 document.addEventListener('DOMContentLoaded', () => {
     carregarPublicacoes();
 });

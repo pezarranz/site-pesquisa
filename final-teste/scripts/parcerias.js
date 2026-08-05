@@ -1,6 +1,8 @@
+// Imports do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+// Credenciais
 const firebaseConfig = {
     apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
     authDomain: "site-pesquisa-engcomp.firebaseapp.com",
@@ -13,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Função Principal
 async function carregarParcerias() {
     const containerAcademicas = document.getElementById('container-academicas');
     const containerIndustria = document.getElementById('container-industria');

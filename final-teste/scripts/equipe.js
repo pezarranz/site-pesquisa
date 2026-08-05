@@ -1,8 +1,8 @@
-// 1. Imports do Firebase
+// Imports do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// 2. Credenciais (Cole as mesmas que você usou no publicacoes.js)
+// Credenciais
 const firebaseConfig = {
     apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
     authDomain: "site-pesquisa-engcomp.firebaseapp.com",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 3. Função Principal
+// Função Principal
 async function carregarEquipe() {
     const containerDocentes = document.getElementById('lista-docentes');
     const containerEstudantes = document.getElementById('lista-estudantes');
@@ -81,7 +81,7 @@ async function carregarEquipe() {
             }
         });
 
-        // 4. Ativa os botões de e-mail APENAS depois que os cards estão na tela!
+        // Ativa os botões de e-mail DEPOIS que os cards estão na tela
         configurarBotoesEmail();
 
     } catch (erro) {
@@ -89,7 +89,7 @@ async function carregarEquipe() {
     }
 }
 
-// 5. O seu código original encapsulado em uma função
+// Código original encapsulado em uma função
 function configurarBotoesEmail() {
     const botoesEmail = document.querySelectorAll('.btn-copiar-email');
     botoesEmail.forEach(botao => {
@@ -121,7 +121,7 @@ function configurarBotoesEmail() {
     });
 }
 
-// 6. Inicia o processo
+// Inicia o processo
 document.addEventListener('DOMContentLoaded', () => {
     carregarEquipe();
 });

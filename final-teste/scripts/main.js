@@ -1,8 +1,8 @@
-// 1. Imports do Firebase
+// Imports do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// 2. Credenciais
+// Credenciais
 const firebaseConfig = {
     apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
     authDomain: "site-pesquisa-engcomp.firebaseapp.com",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 3. Função Principal
+// Função Principal (busca e renderiza os dados do Firebase)
 async function carregarAtualizacoes() {
     const container = document.getElementById('lista-atualizacoes');
     if (!container) return;
@@ -25,16 +25,16 @@ async function carregarAtualizacoes() {
     try {
         const querySnapshot = await getDocs(collection(db, "atualizacoes"));
         
-        // Colocamos os dados num array para poder ordenar do mais recente para o mais antigo
+        // array de dados para ordenar do mais recente para o mais antigo
         let listaNoticias = [];
         querySnapshot.forEach((doc) => {
             listaNoticias.push(doc.data());
         });
 
-        // Ordena com base em um campo numérico chamado 'ordem' (ex: 3, 2, 1)
+        // ordem baseada em um campo numérico chamado 'ordem' (ex: 3, 2, 1)
         listaNoticias.sort((a, b) => b.ordem - a.ordem);
 
-        // Gera o HTML para cada notícia
+        // gera o HTML pra cada notícia
         listaNoticias.forEach((noticia) => {
             const cardHTML = `
             <article class="group py-6 border-b border-outline-variant flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 hover:bg-surface-container-low transition-colors duration-200 cursor-pointer px-4 -mx-4 md:px-0 md:mx-0">
@@ -51,6 +51,7 @@ async function carregarAtualizacoes() {
                 </div>
             </article>
             `;
+            // concatenando novas informações ao conteúdo antigo
             container.innerHTML += cardHTML;
         });
 
@@ -59,7 +60,7 @@ async function carregarAtualizacoes() {
     }
 }
 
-// 4. Inicia o processo quando a página carregar
+// Inicia o processo 
 document.addEventListener('DOMContentLoaded', () => {
     carregarAtualizacoes();
 });

@@ -1,8 +1,8 @@
-// 1. Imports do Firebase
+// Imports do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// 2. Credenciais
+// Credenciais
 const firebaseConfig = {
     apiKey: "AIzaSyCVAt9i9LbtQ6uRZjAdagWbxR05LcnB4v8",
     authDomain: "site-pesquisa-engcomp.firebaseapp.com",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 3. Função Principal
+// Função Principal
 async function carregarProjetos() {
     const container = document.getElementById('lista-projetos');
     if (!container) return;
@@ -30,17 +30,31 @@ async function carregarProjetos() {
             
             // LÓGICA DE ESTADO: Define as cores da etiqueta com base no status
             let classeEstado = "";
+            // caso tag "em andamento"
             if (projeto.estado.toLowerCase() === "em andamento") {
                 classeEstado = "bg-tertiary-fixed text-on-tertiary-fixed font-bold";
-            } else if (projeto.estado.toLowerCase() === "concluído" || projeto.estado.toLowerCase() === "concluido") {
+            } 
+            // caso tag "concluído"
+            else if (projeto.estado.toLowerCase() === "concluído" || projeto.estado.toLowerCase() === "concluido") {
                 classeEstado = "bg-surface-variant text-on-surface-variant border border-outline-variant";
             }
 
-            // LÓGICA DE TAGS: Transforma a string do Firebase (ex: "Arquitetura, IA") em spans separados
+            // LÓGICA DE TAGS: Preparada para lidar tanto com Strings quanto com Arrays
             let tagsHTML = "";
             if (projeto.tags) {
-                // Divide a string pelas vírgulas e remove espaços extras
-                const listaTags = projeto.tags.split(',').map(tag => tag.trim());
+                let listaTags = [];
+                
+                // 1. Se veio do Firebase como Texto (String): "Arquitetura, IA"
+                // lidamos esse caso removendo as virgulas e transformando em dois(ou mais) itens
+                if (typeof projeto.tags === 'string') {
+                    listaTags = projeto.tags.split(',').map(tag => tag.trim());
+                } 
+                // 2. Se veio do Firebase já como uma Lista (Array): ["Arquitetura", "IA"]
+                else if (Array.isArray(projeto.tags)) {
+                    listaTags = projeto.tags;
+                }
+
+                // construindo visuais das tags no HTML
                 listaTags.forEach(tag => {
                     tagsHTML += `<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">${tag}</span>`;
                 });
@@ -75,7 +89,7 @@ async function carregarProjetos() {
     }
 }
 
-// 4. Inicia o processo
+// Inicia o processo
 document.addEventListener('DOMContentLoaded', () => {
     carregarProjetos();
 });
