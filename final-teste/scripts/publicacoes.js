@@ -28,7 +28,7 @@ async function carregarPublicacoes() {
     const topicosUnicos = new Set();
 
     try {
-        const querySnapshot = await getDocs(collection(db, "publicacoes"));
+        const querySnapshot = await getDocs(collection(db, "midia"));
         
         querySnapshot.forEach((doc) => {
             const artigo = doc.data();
@@ -54,13 +54,10 @@ async function carregarPublicacoes() {
                 </div>
                 <div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
                     <a href="${artigo.link_pdf}" target="_blank" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
-                        <span class="material-symbols-outlined text-[18px]" data-icon="picture_as_pdf">picture_as_pdf</span>
-                        PDF
-                    </a>
-                    <a href="${artigo.doi}" target="_blank" rel="noopener noreferrer" class="w-full bg-transparent border border-outline text-on-surface py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
-                        <span class="texto-botao">DOI</span>
+                        LINK
                     </a>
+
                 </div>
             </article>
             `;
