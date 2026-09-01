@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Administração - GLHUD</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração básica de cores do seu tema -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: "#ff5000" },
+                    fontFamily: {
+                        body: ["Inter", "sans-serif"],
+                        display: ["Space Grotesk", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4 font-body antialiased">
+
+    <!-- Container do Login -->
+    <main class="bg-white p-8 rounded-xl shadow-[0px_4px_20px_rgba(15,23,42,0.08)] max-w-md w-full border border-slate-200">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold font-display text-slate-900 mb-2">Painel de Administração</h1>
+            <p class="text-slate-500 text-sm">Faça login para gerenciar publicações, projetos e equipe.</p>
+        </div>
+
+        <form id="form-login" class="flex flex-col gap-5">
+            <!-- Campo E-mail -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">E-mail</label>
+                <input type="email" id="email" required
+                       class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                       placeholder="usuario@email.com">
+            </div>
+
+            <!-- Campo Senha -->
+            <div>
+                <label for="senha" class="block text-sm font-medium text-slate-700 mb-1">Senha</label>
+                <input type="password" id="senha" required
+                       class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                       placeholder="••••••••">
+            </div>
+
+            <!-- Mensagem de erro (escondida por padrão) -->
+            <p id="mensagem-erro" class="text-red-600 text-sm font-medium text-center hidden"></p>
+
+            <!-- Botão de Entrar -->
+            <button type="submit" id="btn-entrar"
+                    class="w-full bg-primary text-white font-medium py-2.5 rounded-lg hover:bg-orange-600 active:scale-[0.98] transition-all mt-2">
+                Entrar no Sistema
+            </button>
+        </form>
+    </main>
+
+    <!-- O motor JavaScript que fará o login acontecer -->
+    <script type="module" src="../scripts/login.js"></script>
+</body>
+</html>

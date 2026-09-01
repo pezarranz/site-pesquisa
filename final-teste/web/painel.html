@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Painel de Controle - GLHUD</title>
+    
+    <!-- Google Fonts & Tailwind -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: "#ff5000" }, fontFamily: { body: ["Inter", "sans-serif"], display: ["Space Grotesk", "sans-serif"] } } } }
+    </script>
+</head>
+<body class="bg-slate-50 min-h-screen font-body hidden" id="corpo-pagina">
+    <!-- Adicionamos 'hidden' no body. O JS só vai revelar a página se confirmar o login! -->
+
+    <!-- Barra de Navegação -->
+    <nav class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center">
+        <div class="font-display font-bold text-xl text-slate-900">Painel GLHUD</div>
+        <button id="btn-sair" class="text-sm font-medium text-slate-500 hover:text-red-600 transition-colors">Sair da conta</button>
+    </nav>
+
+    <!-- Área de Trabalho -->
+<!-- Área de Trabalho -->
+    <main class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-sm border border-slate-200">
+        
+        <!-- Menu de Abas Internas -->
+        <div class="flex gap-6 border-b border-slate-200 mb-6">
+            <button id="tab-projetos" class="pb-2 text-primary font-bold border-b-2 border-primary transition-colors">
+                Projetos
+            </button>
+            <button id="tab-equipe" class="pb-2 text-slate-500 font-medium hover:text-slate-800 transition-colors">
+                Membros da Equipe
+            </button>
+            <!-- NOVO BOTÃO AQUI -->
+            <button id="tab-publicacoes" class="pb-2 text-slate-500 font-medium hover:text-slate-800 transition-colors">
+                Mídias
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SEÇÃO: PROJETOS (O formulário que você já tem) -->
+        <!-- ========================================== -->
+        <section id="secao-projetos" class="block">
+            <h2 class="text-xl font-display font-bold text-slate-900 mb-6">Adicionar Novo Projeto</h2>
+            <form id="form-projeto" class="flex flex-col gap-5">
+                <!-- Título -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Título do Projeto</label>
+                    <input type="text" id="proj-titulo" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                </div>
+                <!-- Descrição -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Descrição</label>
+                    <textarea id="proj-descricao" rows="3" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none"></textarea>
+                </div>
+                <!-- Estado e Tags -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Estado</label>
+                        <select id="proj-estado" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Concluído">Concluído</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Tags (separadas por vírgula)</label>
+                        <input type="text" id="proj-tags" placeholder="Ex: IA, Visão Computacional" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                </div>
+                <!-- Upload de Imagem (Com Preview) -->
+                <div class="flex flex-col gap-2">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Capa do Projeto (Imagem)</label>
+                    <input type="file" id="proj-foto" accept="image/*" required class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-orange-50 file:text-primary hover:file:bg-orange-100">
+                    <div id="preview-container" class="hidden relative w-40 mt-2">
+                        <img id="img-preview" class="w-full h-32 object-cover rounded-md border border-slate-200 shadow-sm" src="" alt="Preview">
+                        <button type="button" id="btn-remover-foto" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center hover:bg-red-600 transition-colors shadow-md">✕</button>
+                    </div>
+                </div>
+                <button type="submit" id="btn-salvar" class="mt-4 w-full bg-primary text-white font-medium py-3 rounded-lg hover:bg-orange-600 transition-all">
+                    Salvar Projeto no Site
+                </button>
+            </form>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SEÇÃO: EQUIPE (Oculta por padrão) -->
+        <!-- ========================================== -->
+        <section id="secao-equipe" class="hidden">
+            <h2 class="text-xl font-display font-bold text-slate-900 mb-6">Adicionar Membro</h2>
+            <form id="form-equipe" class="flex flex-col gap-5">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Nome -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Nome Completo</label>
+                        <input type="text" id="eq-nome" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">E-mail de Contato</label>
+                        <input type="email" id="eq-email" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Categoria (Docente/Estudante define o formato do card no site) -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Categoria</label>
+                        <select id="eq-categoria" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                            <option value="docente">Docente / Professor</option>
+                            <option value="estudante">Estudante / Pesquisador</option>
+                        </select>
+                    </div>
+                    <!-- Cargo -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Cargo / Título</label>
+                        <input type="text" id="eq-cargo" placeholder="Ex: Coordenador, Aluno de Iniciação..." required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                </div>
+
+                <!-- Descrição (Opcional, usado mais para docentes) -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Mini-biografia (Opcional)</label>
+                    <textarea id="eq-descricao" rows="2" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Link Acadêmico (Lattes) -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Link do Lattes (Opcional)</label>
+                        <input type="url" id="eq-lattes" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <!-- Link Site/LinkedIn -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">LinkedIn ou Site (Opcional)</label>
+                        <input type="url" id="eq-site" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                </div>
+
+                <!-- Upload de Imagem Membro -->
+                <div class="flex flex-col gap-2">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Foto de Perfil</label>
+                    <input type="file" id="eq-foto" accept="image/*" required class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:font-semibold file:bg-orange-50 file:text-primary hover:file:bg-orange-100">
+                    
+                    <div id="preview-container-eq" class="hidden relative w-32 mt-2">
+                        <img id="img-preview-eq" class="w-full h-32 object-cover rounded-md border border-slate-200 shadow-sm" src="" alt="Preview">
+                        <button type="button" id="btn-remover-foto-eq" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center hover:bg-red-600 transition-colors shadow-md">✕</button>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-salvar-equipe" class="mt-4 w-full bg-slate-900 text-white font-medium py-3 rounded-lg hover:bg-slate-800 transition-all">
+                    Adicionar Membro ao Site
+                </button>
+            </form>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SEÇÃO: PUBLICAÇÕES (Oculta por padrão) -->
+        <!-- ========================================== -->
+        <section id="secao-publicacoes" class="hidden">
+            <h2 class="text-xl font-display font-bold text-slate-900 mb-6">Adicionar Mídias</h2>
+            <form id="form-publicacao" class="flex flex-col gap-5">
+                
+                <!-- Título -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Título da Matéria/Mídia</label>
+                    <input type="text" id="pub-titulo" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                </div>
+
+                <!-- Autores e Ano -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Autores</label>
+                        <input type="text" id="pub-autores" placeholder="Ex: Silva, A.; Santos, B." required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Ano de Publicação</label>
+                        <input type="number" id="pub-ano" min="2000" max="2100" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                </div>
+
+                <!-- Tópico e Link -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Tópico / Área</label>
+                        <input type="text" id="pub-topico" placeholder="Ex: Visão Computacional" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Link para o Mídia (URL)</label>
+                        <input type="url" id="pub-link" placeholder="https://..." required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                </div>
+
+                <!-- Resumo -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Resumo (Abstract)</label>
+                    <textarea id="pub-resumo" rows="4" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-primary focus:border-primary outline-none"></textarea>
+                </div>
+
+                <button type="submit" id="btn-salvar-publicacao" class="mt-4 w-full bg-slate-900 text-white font-medium py-3 rounded-lg hover:bg-slate-800 transition-all">
+                    Adicionar Mídia ao Site
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <script type="module" src="../scripts/painel.js"></script>
+</body>
+</html>

@@ -36,13 +36,25 @@ async function carregarProjetos() {
                 classeEstado = "bg-surface-variant text-on-surface-variant border border-outline-variant";
             }
 
-            // LÓGICA DE TAGS: Transforma a string do Firebase (ex: "Arquitetura, IA") em spans separados
+            // LÓGICA DE TAGS
             let tagsHTML = "";
             if (projeto.tags) {
-                // Divide a string pelas vírgulas e remove espaços extras
-                const listaTags = projeto.tags.split(',').map(tag => tag.trim());
+                let listaTags = [];
+                
+                // Se veio como texto (String), converte
+                if (typeof projeto.tags === 'string') {
+                    listaTags = projeto.tags.split(',').map(tag => tag.trim());
+                } 
+                // Se por acaso veio como Array
+                else if (Array.isArray(projeto.tags)) {
+                    listaTags = projeto.tags;
+                }
+
+                // Monta os bloquinhos visuais apenas se houver itens válidos
                 listaTags.forEach(tag => {
-                    tagsHTML += `<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">${tag}</span>`;
+                    if (tag) {
+                        tagsHTML += `<span class="bg-surface-container text-on-surface font-mono-label text-mono-label px-2 py-1 rounded-sm uppercase">${tag}</span>`;
+                    }
                 });
             }
 
@@ -78,4 +90,76 @@ async function carregarProjetos() {
 // 4. Inicia o processo
 document.addEventListener('DOMContentLoaded', () => {
     carregarProjetos();
+});
+
+// ==========================================
+// 6. LÓGICA DE SALVAMENTO: EQUIPE
+// ==========================================
+const formEquipe = document.getElementById('form-equipe');
+const btnSalvarEquipe = document.getElementById('btn-salvar-equipe');
+const inputFotoEq = document.getElementById('eq-foto');
+const previewContainerEq = document.getElementById('preview-container-eq');
+const imgPreviewEq = document.getElementById('img-preview-eq');
+const btnRemoverFotoEq = document.getElementById('btn-remover-foto-eq');
+
+// A. Lógica do Preview da Foto do Membro
+inputFotoEq.addEventListener('change', function(evento) {
+    const arquivo = evento.target.files[0];
+    if (arquivo) {
+        imgPreviewEq.src = URL.createObjectURL(arquivo);
+        previewContainerEq.classList.remove('hidden');
+    }
+});
+
+btnRemoverFotoEq.addEventListener('click', function() {
+    inputFotoEq.value = ''; 
+    imgPreviewEq.src = '';  
+    previewContainerEq.classList.add('hidden'); 
+});
+
+// B. Lógica de Envio para o Firebase
+formEquipe.addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+
+    const textoOriginal = btnSalvarEquipe.innerText;
+    btnSalvarEquipe.innerText = "Salvando Membro... Aguarde.";
+    btnSalvarEquipe.disabled = true;
+    btnSalvarEquipe.classList.add("opacity-70", "cursor-not-allowed");
+
+    try {
+        // 1. Upload da Foto (Salvando na pasta 'equipe' no Storage)
+        const arquivoImagem = inputFotoEq.files[0];
+        const nomeArquivoUnico = Date.now() + "_" + arquivoImagem.name;
+        const referenciaStorage = ref(storage, `equipe/${nomeArquivoUnico}`);
+        
+        await uploadBytes(referenciaStorage, arquivoImagem);
+        const urlPublicaDaFoto = await getDownloadURL(referenciaStorage);
+
+        // 2. Empacotando os dados
+        const novoMembro = {
+            nome: document.getElementById('eq-nome').value.trim(),
+            email: document.getElementById('eq-email').value.trim(),
+            categoria: document.getElementById('eq-categoria').value,
+            cargo: document.getElementById('eq-cargo').value.trim(),
+            descricao: document.getElementById('eq-descricao').value.trim(),
+            lattes: document.getElementById('eq-lattes').value.trim(),
+            site: document.getElementById('eq-site').value.trim(),
+            foto_url: urlPublicaDaFoto
+        };
+
+        // 3. Enviando para o banco de dados (Coleção 'equipe')
+        await addDoc(collection(db, "equipe"), novoMembro);
+
+        alert("Membro adicionado com sucesso!");
+        formEquipe.reset();
+        btnRemoverFotoEq.click(); // Força o clique no "X" para esconder o preview da foto antiga
+
+    } catch (erro) {
+        console.error("Erro ao salvar membro:", erro);
+        alert("Erro ao salvar. Verifique o console para detalhes.");
+    } finally {
+        btnSalvarEquipe.innerText = textoOriginal;
+        btnSalvarEquipe.disabled = false;
+        btnSalvarEquipe.classList.remove("opacity-70", "cursor-not-allowed");
+    }
 });
