@@ -28,7 +28,7 @@ async function carregarPublicacoes() {
     const topicosUnicos = new Set();
 
     try {
-        const querySnapshot = await getDocs(collection(db, "midia"));
+        const querySnapshot = await getDocs(collection(db, "publicacoes"));
         
         querySnapshot.forEach((doc) => {
             const artigo = doc.data();
@@ -41,7 +41,7 @@ async function carregarPublicacoes() {
             <article data-ano="${artigo.ano}" data-topico="${artigo.topico}" class="artigo-publicacao bg-surface-container-lowest border border-surface-variant p-6 rounded-lg hover:shadow-[0px_4px_20px_rgba(15,23,42,0.08)] transition-shadow duration-300 flex flex-col md:flex-row gap-6">
                 <div class="flex-grow">
                     <div class="flex items-center gap-3 mb-3">
-                        <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.conferencia} ${artigo.ano}</span>
+                        <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.ano}</span>
                         <span class="bg-surface-container px-2 py-1 rounded font-mono-label text-mono-label text-on-surface uppercase">${artigo.topico}</span>
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary mb-2">${artigo.titulo}</h3>
@@ -53,7 +53,7 @@ async function carregarPublicacoes() {
                     </p>
                 </div>
                 <div class="md:w-48 flex flex-col justify-center gap-3 shrink-0 border-t md:border-t-0 md:border-l border-surface-variant pt-4 md:pt-0 md:pl-6">
-                    <a href="${artigo.link_pdf}" target="_blank" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
+                    <a href="${artigo.link}" target="_blank" class="w-full bg-primary text-on-primary py-2 rounded-DEFAULT font-label-sm text-label-sm hover:bg-primary/90 flex items-center justify-center gap-2 transition-colors">
                         <span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
                         LINK
                     </a>

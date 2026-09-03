@@ -34,7 +34,7 @@ async function carregarParcerias() {
         let academicas = [];
         let industria = [];
 
-        // Separa os dados pelas categorias
+        // CORREÇÃO 1: Separa os dados pela chave 'categoria' (academica ou industria)
         querySnapshot.forEach((doc) => {
             const parceiro = doc.data();
             if (parceiro.categoria === 'academica') {
@@ -48,7 +48,7 @@ async function carregarParcerias() {
         academicas.forEach((parceiro, index) => {
             const ciclo = index % 4; // Retorna 0, 1, 2 ou 3
             
-            // Renderiza as tags (se existirem no banco)
+            // Renderiza as tags
             let tagsHTML = '';
             if (parceiro.tags && Array.isArray(parceiro.tags)) {
                 tagsHTML = parceiro.tags.map(tag => 
@@ -71,6 +71,7 @@ async function carregarParcerias() {
                             <div class="h-16 w-32 bg-white rounded flex items-center justify-center p-2 shadow-sm border border-outline-variant/20">
                                 <img class="object-contain h-full w-full opacity-80 mix-blend-multiply" src="${parceiro.logo_url}" alt="Logo ${parceiro.nome}">
                             </div>
+                            <!-- CORREÇÃO 2: Lê 'abrangencia' em vez de 'origem' -->
                             <span class="font-mono-label text-mono-label bg-surface-variant text-on-surface-variant px-3 py-1 rounded-sm uppercase tracking-wider">${parceiro.abrangencia || 'Nacional'}</span>
                         </div>
                         <h3 class="font-headline-lg text-headline-lg text-primary mb-4">${parceiro.nome}</h3>
@@ -105,6 +106,7 @@ async function carregarParcerias() {
                             <div class="h-16 w-32 bg-white/10 backdrop-blur-sm rounded flex items-center justify-center p-2 border border-white/10">
                                 <img class="object-contain h-full w-full opacity-90 invert" src="${parceiro.logo_url}" alt="Logo ${parceiro.nome}">
                             </div>
+                            <!-- A chave 'abrangencia' já estava correta aqui -->
                             <span class="font-mono-label text-mono-label bg-white/10 text-tertiary-fixed px-3 py-1 rounded-sm uppercase tracking-wider border border-white/10">${parceiro.abrangencia || 'Internacional'}</span>
                         </div>
                         <h3 class="font-headline-lg text-headline-lg text-white mb-4">${parceiro.nome}</h3>
@@ -123,8 +125,8 @@ async function carregarParcerias() {
             
             industria.forEach(parceiro => {
                 const cardIndustria = `
-                <a href="${parceiro.link_site || '#'}" target="_blank" class="bg-surface border border-outline-variant/30 px-6 py-4 rounded flex items-center gap-3 hover:border-tertiary-fixed-dim transition-colors cursor-pointer">
-                    <span class="material-symbols-outlined text-secondary">${parceiro.icone || 'business'}</span>
+                <a href="${parceiro.link || '#'}" target="_blank" class="bg-surface border border-outline-variant/30 px-6 py-4 rounded flex items-center gap-3 hover:border-tertiary-fixed-dim transition-colors cursor-pointer">
+                    <span class="material-symbols-outlined text-secondary">business</span>
                     <span class="font-label-sm text-label-sm text-primary">${parceiro.nome}</span>
                 </a>`;
                 containerIndustria.innerHTML += cardIndustria;
