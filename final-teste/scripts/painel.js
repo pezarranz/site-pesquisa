@@ -210,7 +210,7 @@ const btnSalvarPublicacao = document.getElementById('btn-salvar-publicacao');
 formPublicacao.addEventListener('submit', async (evento) => {
     evento.preventDefault(); 
     const textoOriginal = btnSalvarPublicacao.innerText;
-    btnSalvarPublicacao.innerText = "Salvando Publicação...";
+    btnSalvarPublicacao.innerText = "Salvando Mídia...";
     btnSalvarPublicacao.disabled = true;
     btnSalvarPublicacao.classList.add("opacity-70", "cursor-not-allowed");
 
